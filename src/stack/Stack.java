@@ -18,12 +18,10 @@ class Stack<T> implements Stackable<T> {
 
     @Override
     public void push(T value) {
-        if (this.value == null)
-            this.value = value;
-        else {
-            this.previous = new Stack<T>(this.previous, this.value);
-            this.value = value;
+        if (this.value != null) {
+            this.previous = new Stack<>(this.previous, this.value);
         }
+        this.value = value;
     }
 
     @Override

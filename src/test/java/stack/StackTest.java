@@ -53,6 +53,31 @@ public class StackTest {
         );
     }
 
+    @DisplayName("Pop one item")
+    @Test
+    void popOneItem() {
+        stack.push(5);
+        int top = stack.pop();
+        Assertions.assertEquals(5, top);
+        Assertions.assertTrue(stack.isEmpty());
+        Assertions.assertEquals(0, stack.size());
+        Assertions.assertThrows(IllegalArgumentException.class, () -> stack.pop());
+    }
 
+    @DisplayName("Pop multiple items")
+    @Test
+    void popMultipleItems() {
+        stack.push(3);
+        stack.push(7);
+        Assertions.assertEquals(7, stack.pop());
+        Assertions.assertEquals(3, stack.pop());
+        Assertions.assertThrows(IllegalArgumentException.class, () -> stack.pop());
+    }
+
+    @DisplayName("Push a null item")
+    @Test
+    void pushNullItem(){
+        Assertions.assertThrows(NullPointerException.class, () ->stack.push(null));
+    }
 
 }

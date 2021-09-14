@@ -31,7 +31,28 @@ public class StackTest {
         Assertions.assertEquals(1, stack.size());
         Assertions.assertEquals(2, stack.peek());
         Assertions.assertEquals("2", String.valueOf(stack));
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(1, stack.search(2)),
+                () -> Assertions.assertEquals(-1, stack.search(3)));
     }
+
+    @DisplayName("Push multiple items")
+    @Test
+    void pushMultipleItems() {
+        stack.push(5);
+        stack.push(3);
+        stack.push(7);
+        Assertions.assertEquals(3, stack.size());
+        Assertions.assertEquals(7, stack.peek());
+        Assertions.assertEquals("5 <- 3 <- 7", String.valueOf(stack));
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(1, stack.search(7)),
+                () -> Assertions.assertEquals(2, stack.search(3)),
+                () -> Assertions.assertEquals(3, stack.search(5)),
+                () -> Assertions.assertEquals(-1, stack.search(4))
+        );
+    }
+
 
 
 }

@@ -43,12 +43,16 @@ class Stack<T> implements Stackable<T> {
 
     @Override
     public boolean isEmpty() {
-        return this.previous == null;
+        return this.previous == null && this.value == null;
     }
 
     @Override
     public int size() {
-        return this.isEmpty() ? 0 : 1 + this.previous.size();
+        if (this.isEmpty())
+            return 0;
+        if (this.value != null && this.previous == null)
+            return 1;
+        return 1 + this.previous.size();
     }
 
     @Override
@@ -66,7 +70,7 @@ class Stack<T> implements Stackable<T> {
 
     @Override
     public String toString() {
-        if (!this.isEmpty())
+        if (this.previous != null)
             return this.previous + " <- " + this.value;
         return this.value != null ? String.valueOf(this.value) : "";
     }

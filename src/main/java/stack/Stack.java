@@ -18,7 +18,7 @@ class Stack<T> implements Stackable<T> {
 
     @Override
     public void push(T value) {
-        if (this.value != null) {
+        if (value != null) {
             this.previous = new Stack<>(this.previous, this.value);
         }
         this.value = value;
@@ -43,16 +43,12 @@ class Stack<T> implements Stackable<T> {
 
     @Override
     public boolean isEmpty() {
-        return this.previous == null && this.value == null;
+        return this.previous == null;
     }
 
     @Override
     public int size() {
-        if (this.isEmpty())
-            return 0;
-        if (this.value != null && this.previous == null)
-            return 1;
-        return 1 + this.previous.size();
+        return this.isEmpty() ? 0 : 1 + this.previous.size();
     }
 
     @Override
@@ -70,8 +66,9 @@ class Stack<T> implements Stackable<T> {
 
     @Override
     public String toString() {
-        if (this.previous != null)
-            return this.previous + " <- " + this.value;
+        if (this.size() > 1){
+            return this.previous + " <- " + this.value;}
         return this.value != null ? String.valueOf(this.value) : "";
+
     }
 }

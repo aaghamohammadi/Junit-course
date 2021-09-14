@@ -7,10 +7,6 @@ class Stack<T> implements Stackable<T> {
     Stack() {
     }
 
-    Stack(T value) {
-        this.value = value;
-    }
-
     Stack(Stack<T> previous, T value) {
         this.previous = previous;
         this.value = value;
@@ -18,10 +14,12 @@ class Stack<T> implements Stackable<T> {
 
     @Override
     public void push(T value) {
-        if (value != null) {
-            this.previous = new Stack<>(this.previous, this.value);
-        }
+        if (value == null)
+            throw new NullPointerException("It is not possible to push a null item");
+
+        this.previous = new Stack<>(this.previous, this.value);
         this.value = value;
+
     }
 
     @Override
@@ -66,8 +64,9 @@ class Stack<T> implements Stackable<T> {
 
     @Override
     public String toString() {
-        if (this.size() > 1){
-            return this.previous + " <- " + this.value;}
+        if (this.size() > 1) {
+            return this.previous + " <- " + this.value;
+        }
         return this.value != null ? String.valueOf(this.value) : "";
 
     }

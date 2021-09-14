@@ -32,4 +32,6 @@ public class StackTest {
         Assertions.assertEquals(2, stack.peek());
         Assertions.assertEquals("2", String.valueOf(stack));
     }
+
+
 }

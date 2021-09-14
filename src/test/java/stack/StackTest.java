@@ -9,13 +9,13 @@ public class StackTest {
     private Stackable<Integer> stack;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         stack = new Stack<>();
     }
 
     @DisplayName("Stack is empty")
     @Test
-    public void stackIsEmpty() {
+    void stackIsEmpty() {
         Assertions.assertTrue(stack.isEmpty());
         Assertions.assertEquals(0, stack.size());
         Assertions.assertThrows(IllegalArgumentException.class, () -> stack.pop());
@@ -25,7 +25,7 @@ public class StackTest {
 
     @DisplayName("Push one item")
     @Test
-    public void pushOneItem() {
+    void pushOneItem() {
         stack.push(2);
         Assertions.assertFalse(stack.isEmpty());
         Assertions.assertEquals(1, stack.size());
